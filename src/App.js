@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import logo from './img/TMDBlogo.svg';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import MovieList from './components/MovieList';
+import Navigation from './components/Navigation';
+import Search from './components/Search';
+import MoviePage from './components/MoviePage';
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navigation />
+      <Switch>
+        <Route path='/Latest' component={MovieList} />
+        <Route path='/Search' component={Search} />
+        <Route path='/MoviePage' component={MoviePage} />
+        <Route path='*'>
+          <Redirect to="/Latest" />
+        </Route>
+      </Switch>
+      <footer>
+        <div>
+        <p>Powered by:</p><img src={logo} alt="logo"/>
+        </div>
+      <div><p>Favicon made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></p></div>
+      </footer>
     </div>
   );
 }
