@@ -5,6 +5,7 @@ import MovieList from './components/MovieList';
 import Navigation from './components/Navigation';
 import Search from './components/Search';
 import MoviePage from './components/MoviePage';
+import WatchList from './components/WatchList';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path='/Latest' component={MovieList} />
         <Route path='/Search' component={Search} />
         <Route path='/MoviePage' component={MoviePage} />
+        <Route path='/watchList' component={WatchList} />
         <Route path='*'>
           <Redirect to="/Latest" />
         </Route>

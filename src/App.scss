@@ -97,6 +97,27 @@ div.movieContainer {
     }
 }
 
+div.ratingContainer {
+    display: inline-block;
+    border: 1px solid green;
+    border-radius: 0.25rem;
+    margin-left: 10px;
+    /* Hide arrows other browsers */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    /* Hide arrows Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+    input {
+        border: none;
+        width: 50px;
+    }
+}
+
 div.peopleContainer {
     div.person-card {
         width: 12rem;

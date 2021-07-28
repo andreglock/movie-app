@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import moment from "moment";
+import { faUniversalAccess } from '@fortawesome/free-solid-svg-icons';
 
 export default function MoviePage(props) {
 
     const [movieData, setData] = useState(false);
     const [credits, setCredits] = useState(false);
+    const [guestID, setGuestID] = useState(false);
 
     // Get movie information
     useEffect(() => {
@@ -22,6 +24,16 @@ export default function MoviePage(props) {
             .then(result => setCredits(result));
     }, [props.location.hash]);
 
+    // Get guestID information
+    useEffect(() => {
+        fetch(` https://api.themoviedb.org/3/authentication/guest_session/new?api_key=8c20094b9d32bd14049b323d7d8294d0`)
+            .then(response => response.json())
+            .catch(e => console.warn('error getting guestID:', e))
+            .then(result => setGuestID(result));
+    }, [props.location.hash]);
+        
+    console.log('guestID', guestID);
+
     // Sort by cast by photo availability
     if (credits) {
         credits.cast.sort((a, b) => {
@@ -33,6 +45,44 @@ export default function MoviePage(props) {
                 return 0;
             }
         })
+    }
+
+    function addToWatchList(movieData) {
+        let placeholder = [];
+        // Check if localStorage is empty
+        if (localStorage.getItem('watchList') != null) {
+            placeholder = JSON.parse(localStorage.getItem('watchList'));
+            // Check if movie is already in the watchList:
+            for (const movie of placeholder) {
+                if (movie.title === movieData.title) {
+                    return;
+                }
+            }
+        }
+        placeholder.push(movieData);
+        localStorage.setItem('watchList', JSON.stringify(placeholder));
+    }
+
+    function addRating(movieID, guestID, rating) {
+        if (rating < 0.5 || rating > 10) {
+            alert('Rating must be between 0.5 and 10')
+        } else {
+            fetch(`https://api.themoviedb.org/3/movie/${movieID}/rating?${rating}api_key=8c20094b9d32bd14049b323d7d8294d0&guest_session_id=${guestID}`,
+                { 
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json;charset=utf-8', },
+                    body: JSON.stringify({ "value": rating })
+                })
+                .then(response => {
+                    if (response.status === 401) {
+                        console.warn(response.statusText)
+                    }
+                    return response.json();
+                })
+                .catch(e => console.warn('error getting guestID:', e))
+                .then(result => console.log('Success:', result))
+        }
+        console.log(movieID, guestID, rating);
     }
 
     return <>
@@ -50,6 +100,11 @@ export default function MoviePage(props) {
                 <span>Rating: {movieData.vote_average}</span>
             </div>
             <p>{movieData.overview}</p>
+            <button className="btn btn-success" onClick={() => addToWatchList(movieData)}>+ Add to watch list</button>
+            <div className="ratingContainer">
+                <input type="number" placeholder='Rating' min="0.5" max="10"/>
+                <button className="btn btn-light" onClick={() => addRating(movieData.id, guestID, document.querySelector("input").value)}>Rate Movie</button>
+            </div>
         </div>
         <div className="peopleContainer d-flex flex-wrap justify-content-center">
             {credits ?
