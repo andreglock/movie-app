@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import moment from "moment";
-import { faUniversalAccess } from '@fortawesome/free-solid-svg-icons';
 
 export default function MoviePage(props) {
 
