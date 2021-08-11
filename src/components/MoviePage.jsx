@@ -31,7 +31,7 @@ export default function MoviePage(props) {
             .then(result => setGuestID(result));
     }, [props.location.hash]);
         
-    console.log('guestID', guestID);
+    console.log('guestID', guestID.guest_session_id);
 
     // Sort by cast by photo availability
     if (credits) {
@@ -66,7 +66,7 @@ export default function MoviePage(props) {
         if (rating < 0.5 || rating > 10) {
             alert('Rating must be between 0.5 and 10')
         } else {
-            fetch(`https://api.themoviedb.org/3/movie/${movieID}/rating?${rating}api_key=8c20094b9d32bd14049b323d7d8294d0&guest_session_id=${guestID}`,
+            fetch(`https://api.themoviedb.org/3/movie/${movieID}/rating?${rating}api_key=8c20094b9d32bd14049b323d7d8294d0&guest_session_id=${guestID.guest_session_id}`,
                 { 
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json;charset=utf-8', },
@@ -80,8 +80,7 @@ export default function MoviePage(props) {
                 })
                 .catch(e => console.warn('error getting guestID:', e))
                 .then(result => console.log('Success:', result))
-        }
-        console.log(movieID, guestID, rating);
+        };
     }
 
     return <>
