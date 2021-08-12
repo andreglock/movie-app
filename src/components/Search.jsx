@@ -11,6 +11,7 @@ export default function Search() {
     const [ready, setDelay] = useState(false);
     const [searched, handleSearch] = useState(false);
     const [genre, setGenre] = useState(false);
+    const [page, setPage] = useState(1);
 
     // Get the Genre array to translate genre_ids 
     useEffect(() => {
@@ -23,12 +24,17 @@ export default function Search() {
 
     // Get searched movies:
     useEffect(() => {
-            fetch('https://api.themoviedb.org/3/search/movie?api_key=8c20094b9d32bd14049b323d7d8294d0&language=en-US&page=1&include_adult=false&query=' + searched)
+            fetch(`https://api.themoviedb.org/3/search/movie?api_key=8c20094b9d32bd14049b323d7d8294d0&language=en-US&page=${page}&include_adult=false&query=` + searched)
                 .then(response => response.json())
                 .catch(e => console.warn('error getting movies:', e))
-                .then(result => setSearchedData(result))
-    }, [searched])
+                .then(result => {
+                    console.log(result);
+                    setSearchedData(result)
+                })
+            
+    }, [searched, page])
 
+    // Add a 200 second delay to update searched before displaying (else it would display 'false' as searched)
     useEffect(() => {
         setTimeout(() => {
             if (searched) {
@@ -42,6 +48,15 @@ export default function Search() {
             <input type="text" placeholder='Search' />
             <button onClick={() => handleSearch(document.querySelector("input").value)}><FontAwesomeIcon icon={faSearch} /></button>
         </div>
+        { ready ? <div className="pages d-flex flex-row justify-content-between mx-md-5 my-2 my-md-0">
+            {page === 1 ? 
+            <button disabled>Previous Page</button> : 
+            <button onClick={() => setPage(page - 1)}>Previous Page</button>}
+            {page === data.total_pages ? 
+            <button disabled>Next Page</button> : 
+            <button onClick={() => setPage(page + 1)}>Next Page</button>}
+         </div>:
+        <></> }
         <div className="d-flex flex-wrap justify-content-center" style={{minHeight: "65vh"}}>
             {ready ?
             data.results.map((item, i) => 

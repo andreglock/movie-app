@@ -82,6 +82,27 @@ header {
     }
 }
 
+// Page buttons:
+.pages {
+    button {
+        background-color: #BCE5C8;
+        color: #0d253f;
+        padding: 3px 10px;
+        min-width: 130px;
+    }
+    button:first-child {
+        border-radius: 50% 0 0 50%;
+    }
+    button:last-child {
+        border-radius: 0 50% 50% 0;
+    }
+
+    button:disabled {
+        background-color: #f0f0f0;
+        color: grey;
+    }
+}
+
 // 3d effect on hover:
 .card:hover {
     box-shadow: 10px 10px 10px #0d253f;
