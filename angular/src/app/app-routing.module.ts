@@ -4,9 +4,9 @@ import { MovieListComponent } from './movie-list/movie-list.component';
 import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
-  { path: 'latest', component: MovieListComponent},
+  { path: 'trending', component: MovieListComponent},
   { path: 'search', component: SearchComponent},
-  { path: '**', redirectTo: '/latest' }, 
+  { path: '**', redirectTo: '/trending' }, 
 ];
 
 @NgModule({

@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MovieListComponent } from './movie-list/movie-list.component';
 import { SearchComponent } from './search/search.component';
+import { GenreNamePipe } from './genre-name.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     MovieListComponent,
-    SearchComponent
+    SearchComponent,
+    GenreNamePipe
   ],
   imports: [
     BrowserModule,

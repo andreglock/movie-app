@@ -7,7 +7,7 @@ export class Movie {
     public backdrop_path: string | null,
     public belongs_to_collection: null | object,
     public budget: number,
-    public genres: { id: number, name: string }[],
+    public genre_ids: number[],
     public homepage: string | null,
     public id: number,
     public imdb_id: string | null,
@@ -50,9 +50,14 @@ export class MovieListComponent implements OnInit {
   createNewList() {
     this.taskService.getMovies('/trending/movie/week?api_key=8c20094b9d32bd14049b323d7d8294d0')
       .subscribe((response: any) => {
-        console.log(response);
         this.movieList = response.results;
+        this.movieList.sort((a, b) => {
+          if (a.release_date > b.release_date) {
+            return -1;
+          } else {
+            return 1;
+          }
+        });
       });
   }
-
 }
