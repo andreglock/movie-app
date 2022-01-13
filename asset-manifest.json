@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/movie-app/react/static/css/main.7a74cc42.chunk.css",
-    "main.js": "/movie-app/react/static/js/main.da68897b.chunk.js",
-    "main.js.map": "/movie-app/react/static/js/main.da68897b.chunk.js.map",
-    "runtime-main.js": "/movie-app/react/static/js/runtime-main.c1a7fc53.js",
-    "runtime-main.js.map": "/movie-app/react/static/js/runtime-main.c1a7fc53.js.map",
-    "static/js/2.16732dfe.chunk.js": "/movie-app/react/static/js/2.16732dfe.chunk.js",
-    "static/js/2.16732dfe.chunk.js.map": "/movie-app/react/static/js/2.16732dfe.chunk.js.map",
-    "index.html": "/movie-app/react/index.html",
-    "static/css/main.7a74cc42.chunk.css.map": "/movie-app/react/static/css/main.7a74cc42.chunk.css.map",
-    "static/js/2.16732dfe.chunk.js.LICENSE.txt": "/movie-app/react/static/js/2.16732dfe.chunk.js.LICENSE.txt",
-    "static/media/TMDBlogo.da3f379f.svg": "/movie-app/react/static/media/TMDBlogo.da3f379f.svg"
+    "main.css": "/movie-app/static/css/main.7a74cc42.chunk.css",
+    "main.js": "/movie-app/static/js/main.da68897b.chunk.js",
+    "main.js.map": "/movie-app/static/js/main.da68897b.chunk.js.map",
+    "runtime-main.js": "/movie-app/static/js/runtime-main.4e54cf5f.js",
+    "runtime-main.js.map": "/movie-app/static/js/runtime-main.4e54cf5f.js.map",
+    "static/js/2.16732dfe.chunk.js": "/movie-app/static/js/2.16732dfe.chunk.js",
+    "static/js/2.16732dfe.chunk.js.map": "/movie-app/static/js/2.16732dfe.chunk.js.map",
+    "index.html": "/movie-app/index.html",
+    "static/css/main.7a74cc42.chunk.css.map": "/movie-app/static/css/main.7a74cc42.chunk.css.map",
+    "static/js/2.16732dfe.chunk.js.LICENSE.txt": "/movie-app/static/js/2.16732dfe.chunk.js.LICENSE.txt",
+    "static/media/TMDBlogo.da3f379f.svg": "/movie-app/static/media/TMDBlogo.da3f379f.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.c1a7fc53.js",
+    "static/js/runtime-main.4e54cf5f.js",
     "static/js/2.16732dfe.chunk.js",
     "static/css/main.7a74cc42.chunk.css",
     "static/js/main.da68897b.chunk.js"
