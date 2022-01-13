@@ -1,0 +1,24 @@
+<div *ngIf="movieList.length === 20" className="d-flex flex-wrap justify-content-center">
+  <div *ngFor="let movie of movieList" className="card m-2 m-lg-4"><a href="/MoviePage">
+    <img className="card-img-top" src='{"http://image.tmdb.org/t/p/w300/" + item.poster_path} alt="" '/>
+    <div className="card-body">
+      <h5 className="card-title">{{movie.title}}</h5>
+      <!-- { genre ?
+      // Translate genre ID to genre Name
+      item.genre_ids.map((x, j) => {
+          let genreName = '';
+          for (let k = 0; k < genre.genres.length; k++) {
+              if (x === genre.genres[k].id) {
+                  genreName = genre.genres[k].name;
+              }
+          }
+          return <span key={j} className="badge bg-warning text-dark m-1">{genreName}</span>
+      }) :
+      <p>Loading...</p>} -->
+      <div className="d-flex justify-content-around">
+          <!-- <span>{moment(item.release_date).format("Do MMM YYYY")}</span> -->
+          <span>Rating: {{movie.vote_average}}</span>
+      </div>
+    </div>
+  </a></div>
+</div>

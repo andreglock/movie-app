@@ -2,7 +2,7 @@
   "name": "movie-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://andreglock.github.io/movie-app/react",
+  "homepage": "http://andreglock.github.io/movie-app/",
   "dependencies": {
     "-": "^0.0.1",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
