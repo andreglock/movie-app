@@ -48,7 +48,7 @@ export class MovieListComponent implements OnInit {
   }
 
   createNewList() {
-    this.taskService.getMovies('/trending/movie/week?api_key=8c20094b9d32bd14049b323d7d8294d0')
+    this.taskService.getMovies('trending/movie/week?api_key=8c20094b9d32bd14049b323d7d8294d0')
       .subscribe((response: any) => {
         this.movieList = response.results;
         this.movieList.sort((a, b) => {

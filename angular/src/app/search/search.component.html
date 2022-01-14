@@ -1,1 +1,28 @@
-<p>search works!</p>
+<div class="searchWrap">
+  <form #searchForm="ngForm" (ngSubmit)="onSubmit(searchForm)">
+    <input required type="text" [(ngModel)]="searchItem" name="searchItem" placeholder='Search' />
+    <button type="submit" [disabled]="!searchForm.form.valid">
+      <fa-icon [icon]="faSearch"></fa-icon>
+    </button>
+  </form>
+</div>
+<!-- turn pages functionality -->
+<div class="d-flex flex-wrap justify-content-center" [ngStyle]="{'minHeight': '65vh'}">
+  <div *ngFor="let movie of movieList" class="card m-2 m-lg-4">
+    <a routerLink="/moviePage" fragment="{{movie.id}}" routerLinkActive="active">
+      <img class="card-img-top" src="{{'http://image.tmdb.org/t/p/w300/' + movie.poster_path}}" alt="posterPath" />
+      <div class="card-body">
+        <h5 class="card-title">{{movie.title}}</h5>
+        <div> 
+          <span *ngFor="let genre of movie.genre_ids" class="badge bg-warning text-dark m-1">
+            {{genre | genreName}}
+          </span>
+        </div>
+        <div class="d-flex justify-content-around">
+          <span>{{movie.release_date | date}}</span>
+          <span>Rating: {{movie.vote_average}}</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>

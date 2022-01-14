@@ -4,21 +4,27 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MovieListComponent } from './movie-list/movie-list.component';
 import { SearchComponent } from './search/search.component';
 import { GenreNamePipe } from './genre-name.pipe';
+import { FormsModule } from '@angular/forms';
+import { MoviePageComponent } from './movie-page/movie-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MovieListComponent,
     SearchComponent,
-    GenreNamePipe
+    GenreNamePipe,
+    MoviePageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
