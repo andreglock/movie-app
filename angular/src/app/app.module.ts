@@ -10,6 +10,9 @@ import { SearchComponent } from './search/search.component';
 import { GenreNamePipe } from './genre-name.pipe';
 import { FormsModule } from '@angular/forms';
 import { MoviePageComponent } from './movie-page/movie-page.component';
+import { WatchListComponent } from './watch-list/watch-list.component';
+import { PagePipe } from './page.pipe';
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { MoviePageComponent } from './movie-page/movie-page.component';
     MovieListComponent,
     SearchComponent,
     GenreNamePipe,
-    MoviePageComponent
+    MoviePageComponent,
+    WatchListComponent,
+    PaginationComponent,
+    PagePipe
   ],
   imports: [
     BrowserModule,

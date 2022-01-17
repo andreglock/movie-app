@@ -6,11 +6,27 @@
     </button>
   </form>
 </div>
+<div *ngIf="total > 1">
+  <app-pagination
+    [current]="current" [total]="total" (goTo)="onGoTo($event)" 
+    (next)="onNext($event)" (previous)="onPrevious($event)"
+  ></app-pagination>
+</div>
 <!-- turn pages functionality -->
 <div class="d-flex flex-wrap justify-content-center" [ngStyle]="{'minHeight': '65vh'}">
   <div *ngFor="let movie of movieList" class="card m-2 m-lg-4">
     <a routerLink="/moviePage" fragment="{{movie.id}}" routerLinkActive="active">
-      <img class="card-img-top" src="{{'http://image.tmdb.org/t/p/w300/' + movie.poster_path}}" alt="posterPath" />
+      <img 
+        *ngIf="movie.poster_path" class="card-img-top" 
+        src="{{'http://image.tmdb.org/t/p/w300/' + movie.poster_path}}" alt="posterPath"
+      />
+      <div 
+        *ngIf="!movie.poster_path" 
+        class="d-flex justify-content-center align-items-center" 
+        [ngStyle]="{'height': '400px'}"
+      > 
+        No image available
+      </div>
       <div class="card-body">
         <h5 class="card-title">{{movie.title}}</h5>
         <div> 
@@ -24,5 +40,11 @@
         </div>
       </div>
     </a>
+  </div>
+  <div *ngIf="total > 1">
+    <app-pagination
+      [current]="current" [total]="total" (goTo)="onGoTo($event)" 
+      (next)="onNext($event)" (previous)="onPrevious($event)"
+    ></app-pagination>
   </div>
 </div>

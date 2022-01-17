@@ -4,11 +4,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { MovieListComponent } from './movie-list/movie-list.component';
 import { MoviePageComponent } from './movie-page/movie-page.component';
 import { SearchComponent } from './search/search.component';
+import { WatchListComponent } from './watch-list/watch-list.component';
 
 const routes: Routes = [
   { path: 'trending', component: MovieListComponent},
   { path: 'search', component: SearchComponent},
   { path: 'moviePage', component: MoviePageComponent},
+  { path: 'watchlist', component: WatchListComponent},
   { path: '**', redirectTo: '/trending' }, 
 ];
 

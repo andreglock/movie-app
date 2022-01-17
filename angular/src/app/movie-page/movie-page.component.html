@@ -12,8 +12,8 @@
     <span>Rating: {{movie.vote_average}}</span>
   </div>
   <p>{{movie.overview}}</p>
-    <!-- <button class="btn btn-success" onClick={() => addToWatchList(movieData)}>+ Add to watch list</button>
-    <div class="ratingContainer">
+    <button class="btn btn-success" (click)="addToWatchList()">+ Add to watch list</button>
+    <!-- <div class="ratingContainer">
         <input type="number" placeholder='Rating' min="0.5" max="10"/>
         <button class="btn btn-light" onClick={() => addRating(movieData.id, guestID, document.querySelector("input").value)}>Rate Movie</button>
     </div> -->

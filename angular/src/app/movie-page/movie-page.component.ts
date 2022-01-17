@@ -30,6 +30,7 @@ export class MoviePageComponent implements OnInit {
   movieId: string;
   movie: Movie;
   cast: Person[];
+  localStorage = JSON.parse(localStorage.getItem('watchList') || '[]');
   constructor(location: Location, private taskService: TaskService) {
     this.movieId = location.path().split('#')[1];
   }
@@ -56,6 +57,20 @@ export class MoviePageComponent implements OnInit {
         }
         this.cast = response.cast
       });
+  }
+
+  addToWatchList() {
+    // Check if localStorage is empty
+    if (this.localStorage.length !== 0) {
+      // Check if movie is already in the watchList:
+      for (const movie of this.localStorage) {
+        if (movie.title === this.movie.title) {
+          return;
+        }
+      }
+    }
+    this.localStorage.push(this.movie);
+    localStorage.setItem('watchList', JSON.stringify(this.localStorage));
   }
 
 }

@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { TaskService } from './task.service';
 
 @Pipe({
   name: 'genreName'
