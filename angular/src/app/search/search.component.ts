@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 
 import { Movie } from '../movie-list/movie-list.component';
 import { TaskService } from '../task.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 @Component({
@@ -36,7 +36,6 @@ export class SearchComponent implements OnInit {
   getSearch() {
     this.taskService.getMovies(`search/movie?api_key=8c20094b9d32bd14049b323d7d8294d0&language=en-US&&include_adult=false&query=${this.searchItem}&page=${this.current}`)
       .subscribe((response: any) => {
-        console.log(response);
         this.total = response.total_pages;
         this.movieList = response.results;
       });

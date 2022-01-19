@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../task.service';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+
 
 export class Movie {
   constructor(
@@ -40,24 +43,57 @@ export class Movie {
 export class MovieListComponent implements OnInit {
 
   movieList: Movie[];
+  public current: number = 1;
+  public total: number;
 
-  constructor(private taskService: TaskService) { }
+  constructor(
+    private taskService: TaskService,
+    private location: Location,
+    private router: Router
+  ) {
+    if (location.path().split('#')[1]) { // Get current page
+      this.current = parseInt(location.path().split('#')[1]);
+    }
+  }
 
   ngOnInit() {
     this.createNewList();
   }
 
   createNewList() {
-    this.taskService.getMovies('trending/movie/week?api_key=8c20094b9d32bd14049b323d7d8294d0')
+    this.taskService.getMovies(`trending/movie/week?api_key=8c20094b9d32bd14049b323d7d8294d0&page=${this.current}`)
       .subscribe((response: any) => {
+        this.total = response.total_pages;
         this.movieList = response.results;
-        this.movieList.sort((a, b) => {
+        /* this.movieList.sort((a, b) => { // Order by release date
           if (a.release_date > b.release_date) {
             return -1;
           } else {
             return 1;
           }
-        });
+        }); */
+      });
+  }
+
+  public onGoTo(page: number): void {
+    this.current = page;
+  }
+
+  public onNext(page: number): void {
+    this.current = page + 1;
+    this.router.navigate([], { fragment: `${this.current}` });
+    this.taskService.getMovies(`trending/movie/week?api_key=8c20094b9d32bd14049b323d7d8294d0&page=${this.current}`)
+      .subscribe((response: any) => {
+        this.movieList = response.results;
+      });
+  }
+
+  public onPrevious(page: number): void {
+    this.current = page - 1;
+    this.router.navigate([], { fragment: `${this.current}` });
+    this.taskService.getMovies(`trending/movie/week?api_key=8c20094b9d32bd14049b323d7d8294d0&page=${this.current}`)
+      .subscribe((response: any) => {
+        this.movieList = response.results;
       });
   }
 }

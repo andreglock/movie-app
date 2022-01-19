@@ -13,6 +13,7 @@ import { MoviePageComponent } from './movie-page/movie-page.component';
 import { WatchListComponent } from './watch-list/watch-list.component';
 import { PagePipe } from './page.pipe';
 import { PaginationComponent } from './pagination/pagination.component';
+import { MovieCardComponent } from './movie-card/movie-card.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { PaginationComponent } from './pagination/pagination.component';
     MoviePageComponent,
     WatchListComponent,
     PaginationComponent,
-    PagePipe
+    PagePipe,
+    MovieCardComponent
   ],
   imports: [
     BrowserModule,
