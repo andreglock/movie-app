@@ -1,6 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import "./../node_modules/bootstrap/scss/bootstrap";
 
+$breakpointMd: 490px;
+
 .App {
     text-align: center;
 }
@@ -59,7 +61,7 @@ header {
     }
 }
 
-@media (min-width: 420px) {
+@media (min-width: $breakpointMd) {
     header {
         ul {
             padding: 20px;
@@ -87,17 +89,19 @@ header {
 // Page buttons:
 .pages {
     ul {
+        padding: 0;
+        font-size: small;
         margin: auto;
         list-style: none;
         width: max-content;
         li {
             display: inline-block;
-            padding: 10px;
+            padding: 5px;
             button {
                 background-color: #BCE5C8;
                 color: #0d253f;
-                padding: 3px 10px;
-                min-width: 130px;
+                padding: 3px 5px;
+                min-width: 70px;
             }
             button#previous {
                 border-radius: 50% 0 0 50%;
@@ -111,6 +115,21 @@ header {
             }
             a.current {
                 font-weight: bolder;
+            }
+        }
+    }
+}
+
+@media (min-width: $breakpointMd) {
+    .pages {
+        ul {
+            font-size: medium;
+            li {
+                padding: 10px;
+                button {
+                    padding: 3px 10px;
+                    min-width: 130px;
+                }
             }
         }
     }
